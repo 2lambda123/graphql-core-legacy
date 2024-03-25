@@ -30,7 +30,7 @@ def get_unique_schema_id(schema):
 def get_unique_document_id(query_str):
     # type: (str) -> str
     """Get a unique id given a query_string"""
-    assert isinstance(query_str, string_types), (
+    assert isinstance(query_str, str), (
         "Must receive a string as query_str. Received {}"
     ).format(repr(query_str))
 

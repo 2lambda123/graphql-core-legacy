@@ -39,9 +39,9 @@ characterInterface = GraphQLInterfaceType(
             GraphQLList(episodeEnum), description="Which movies they appear in."
         ),
     },
-    resolve_type=lambda character, info: humanType
-    if getHuman(character.id)
-    else droidType,
+    resolve_type=lambda character, info: (
+        humanType if getHuman(character.id) else droidType
+    ),
 )
 
 humanType = GraphQLObjectType(

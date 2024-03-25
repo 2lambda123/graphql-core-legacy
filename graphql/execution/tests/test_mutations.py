@@ -16,13 +16,13 @@ from graphql.type import (
 # from typing import Union
 
 
-class NumberHolder(object):
+class NumberHolder:
     def __init__(self, n):
         # type: (int) -> None
         self.theNumber = n
 
 
-class Root(object):
+class Root:
     def __init__(self, n):
         # type: (int) -> None
         self.numberHolder = NumberHolder(n)

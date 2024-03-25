@@ -3,7 +3,7 @@ import collections
 try:
     from collections.abc import Hashable, Mapping
 except ImportError:  # Python < 3.3
-    from collections import Hashable, Mapping
+    from collections.abc import Hashable, Mapping
 import copy
 
 from typing import Union
@@ -60,7 +60,7 @@ def get_named_type(type_):
     return unmodified_type
 
 
-class GraphQLType(object):
+class GraphQLType:
     pass
 
 
@@ -114,7 +114,7 @@ class GraphQLScalarType(GraphQLNamedType):
         # type: (...) -> None
         assert name, "Type must be named."
         assert_valid_name(name)
-        super(GraphQLScalarType, self).__init__(name)
+        super().__init__(name)
         self.name = name
         self.description = description
 
@@ -178,7 +178,7 @@ class GraphQLObjectType(GraphQLNamedType):
         # type: (...) -> None
         assert name, "Type must be named."
         assert_valid_name(name)
-        super(GraphQLObjectType, self).__init__(name)
+        super().__init__(name)
         self.name = name
         self.description = description
 
@@ -271,7 +271,7 @@ def define_interfaces(
     return interfaces
 
 
-class GraphQLField(object):
+class GraphQLField:
     __slots__ = "type", "args", "resolver", "deprecation_reason", "description"
 
     def __init__(
@@ -308,7 +308,7 @@ class GraphQLField(object):
         return bool(self.deprecation_reason)
 
 
-class GraphQLArgument(object):
+class GraphQLArgument:
     __slots__ = "type", "default_value", "description", "out_name"
 
     def __init__(
@@ -363,7 +363,7 @@ class GraphQLInterfaceType(GraphQLNamedType):
         # type: (...) -> None
         assert name, "Type must be named."
         assert_valid_name(name)
-        super(GraphQLInterfaceType, self).__init__(name)
+        super().__init__(name)
         self.name = name
         self.description = description
 
@@ -411,7 +411,7 @@ class GraphQLUnionType(GraphQLNamedType):
         # type: (...) -> None
         assert name, "Type must be named."
         assert_valid_name(name)
-        super(GraphQLUnionType, self).__init__(name)
+        super().__init__(name)
         self.name = name
         self.description = description
 
@@ -485,7 +485,7 @@ class GraphQLEnumType(GraphQLNamedType):
     def __init__(self, name, values, description=None):
         assert name, "Type must provide name."
         assert_valid_name(name)
-        super(GraphQLEnumType, self).__init__(name)
+        super().__init__(name)
         self.name = name
         self.description = description
 
@@ -566,7 +566,7 @@ def define_enum_values(type, value_map):
     return values
 
 
-class GraphQLEnumValue(object):
+class GraphQLEnumValue:
     __slots__ = "name", "value", "deprecation_reason", "description"
 
     def __init__(
@@ -624,7 +624,7 @@ class GraphQLInputObjectType(GraphQLNamedType):
         assert name, "Type must be named."
         self.name = name
         self.description = description
-        super(GraphQLInputObjectType, self).__init__(name)
+        super().__init__(name)
         if container_type is None:
             container_type = OrderedDict  # type: ignore
         assert callable(container_type), "container_type must be callable"
@@ -660,7 +660,7 @@ class GraphQLInputObjectType(GraphQLNamedType):
         return fields
 
 
-class GraphQLInputObjectField(object):
+class GraphQLInputObjectField:
     __slots__ = "type", "default_value", "description", "out_name"
 
     def __init__(

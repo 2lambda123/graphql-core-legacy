@@ -306,7 +306,7 @@ __DirectiveLocation = GraphQLEnumType(
 )
 
 
-class TypeKind(object):
+class TypeKind:
     SCALAR = "SCALAR"
     OBJECT = "OBJECT"
     INTERFACE = "INTERFACE"
@@ -317,7 +317,7 @@ class TypeKind(object):
     NON_NULL = "NON_NULL"
 
 
-class TypeFieldResolvers(object):
+class TypeFieldResolvers:
     _kinds = (
         (GraphQLScalarType, TypeKind.SCALAR),
         (GraphQLObjectType, TypeKind.OBJECT),
@@ -533,9 +533,13 @@ __InputValue = GraphQLObjectType(
                 "defaultValue",
                 GraphQLField(
                     type_=GraphQLString,
-                    resolver=lambda input_val, *_: None
-                    if input_val.default_value is None
-                    else print_ast(ast_from_value(input_val.default_value, input_val)),
+                    resolver=lambda input_val, *_: (
+                        None
+                        if input_val.default_value is None
+                        else print_ast(
+                            ast_from_value(input_val.default_value, input_val)
+                        )
+                    ),
                 ),
             ),
         ]

@@ -13,7 +13,7 @@ class UniqueArgumentNames(ValidationRule):
 
     def __init__(self, context):
         # type: (ValidationContext) -> None
-        super(UniqueArgumentNames, self).__init__(context)
+        super().__init__(context)
         self.known_arg_names = {}  # type: Dict[str, Name]
 
     def enter_Field(

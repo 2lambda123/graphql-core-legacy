@@ -16,7 +16,7 @@ class VariablesInAllowedPosition(ValidationRule):
 
     def __init__(self, context):
         # type: (ValidationContext) -> None
-        super(VariablesInAllowedPosition, self).__init__(context)
+        super().__init__(context)
         self.var_def_map = {}  # type: Dict[str, VariableDefinition]
 
     def enter_OperationDefinition(
@@ -84,6 +84,8 @@ class VariablesInAllowedPosition(ValidationRule):
 
     @staticmethod
     def bad_var_pos_message(var_name, var_type, expected_type):
-        return 'Variable "{}" of type "{}" used in position expecting type "{}".'.format(
-            var_name, var_type, expected_type
+        return (
+            'Variable "{}" of type "{}" used in position expecting type "{}".'.format(
+                var_name, var_type, expected_type
+            )
         )

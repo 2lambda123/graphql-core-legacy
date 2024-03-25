@@ -46,9 +46,7 @@ class GraphQLCoreBackend(GraphQLBackend):
             document_ast = document_string
             document_string = print_ast(document_ast)
         else:
-            assert isinstance(
-                document_string, string_types
-            ), "The query must be a string"
+            assert isinstance(document_string, str), "The query must be a string"
             document_ast = parse(document_string)
         return GraphQLDocument(
             schema=schema,

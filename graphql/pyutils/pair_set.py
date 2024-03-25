@@ -3,7 +3,7 @@ if False:  # flake8: noqa
     from typing import Dict, Any
 
 
-class PairSet(object):
+class PairSet:
     __slots__ = ("_data",)
 
     def __init__(self):

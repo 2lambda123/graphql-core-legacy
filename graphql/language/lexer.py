@@ -12,7 +12,7 @@ if False:  # flake8: noqa
 __all__ = ["Token", "Lexer", "TokenKind", "get_token_desc", "get_token_kind_desc"]
 
 
-class Token(object):
+class Token:
     __slots__ = "kind", "start", "end", "value"
 
     def __init__(self, kind, start, end, value=None):
@@ -24,7 +24,7 @@ class Token(object):
 
     def __repr__(self):
         # type: () -> str
-        return u"<Token kind={} at {}..{} value={}>".format(
+        return "<Token kind={} at {}..{} value={}>".format(
             get_token_kind_desc(self.kind), self.start, self.end, repr(self.value)
         )
 
@@ -39,7 +39,7 @@ class Token(object):
         )
 
 
-class Lexer(object):
+class Lexer:
     __slots__ = "source", "prev_position"
 
     def __init__(self, source):
@@ -56,7 +56,7 @@ class Lexer(object):
         return token
 
 
-class TokenKind(object):
+class TokenKind:
     EOF = 1
     BANG = 2
     DOLLAR = 3
@@ -81,7 +81,7 @@ class TokenKind(object):
 def get_token_desc(token):
     # type: (Token) -> str
     if token.value:
-        return u'{} "{}"'.format(get_token_kind_desc(token.kind), token.value)
+        return '{} "{}"'.format(get_token_kind_desc(token.kind), token.value)
     else:
         return get_token_kind_desc(token.kind)
 
@@ -144,7 +144,7 @@ def print_char_code(code):
         return "<EOF>"
 
     if code < 0x007F:
-        return json.dumps(unichr(code))
+        return json.dumps(chr(code))
 
     return '"\\u%04X"' % code
 
@@ -168,7 +168,7 @@ def read_token(source, from_position):
     if code:
         if code < 0x0020 and code not in (0x0009, 0x000A, 0x000D):
             raise GraphQLSyntaxError(
-                source, position, u"Invalid character {}.".format(print_char_code(code))
+                source, position, "Invalid character {}.".format(print_char_code(code))
             )
 
         kind = PUNCT_CODE_TO_KIND.get(code)
@@ -194,7 +194,7 @@ def read_token(source, from_position):
             return read_string(source, position)
 
     raise GraphQLSyntaxError(
-        source, position, u"Unexpected character {}.".format(print_char_code(code))
+        source, position, "Unexpected character {}.".format(print_char_code(code))
     )
 
 
@@ -267,7 +267,7 @@ def read_number(source, start, first_code):
             raise GraphQLSyntaxError(
                 source,
                 position,
-                u"Invalid number, unexpected digit after 0: {}.".format(
+                "Invalid number, unexpected digit after 0: {}.".format(
                     print_char_code(code)
                 ),
             )
@@ -320,7 +320,7 @@ def read_digits(source, start, first_code):
     raise GraphQLSyntaxError(
         source,
         position,
-        u"Invalid number, expected digit but got: {}.".format(print_char_code(code)),
+        "Invalid number, expected digit but got: {}.".format(print_char_code(code)),
     )
 
 
@@ -367,7 +367,7 @@ def read_string(source, start):
             raise GraphQLSyntaxError(
                 source,
                 position,
-                u"Invalid character within String: {}.".format(print_char_code(code)),
+                "Invalid character within String: {}.".format(print_char_code(code)),
             )
 
         position += 1
@@ -391,19 +391,19 @@ def read_string(source, start):
                     raise GraphQLSyntaxError(
                         source,
                         position,
-                        u"Invalid character escape sequence: \\u{}.".format(
+                        "Invalid character escape sequence: \\u{}.".format(
                             body[position + 1 : position + 5]
                         ),
                     )
 
-                append(unichr(char_code))
+                append(chr(char_code))
                 position += 4
             else:
                 raise GraphQLSyntaxError(
                     source,
                     position,
-                    u"Invalid character escape sequence: \\{}.".format(
-                        unichr(code)  # type: ignore
+                    "Invalid character escape sequence: \\{}.".format(
+                        chr(code)  # type: ignore
                     ),
                 )
 
@@ -414,7 +414,7 @@ def read_string(source, start):
         raise GraphQLSyntaxError(source, position, "Unterminated string")
 
     append(body[chunk_start:position])
-    return Token(TokenKind.STRING, start, position + 1, u"".join(value))
+    return Token(TokenKind.STRING, start, position + 1, "".join(value))
 
 
 def uni_char_code(a, b, c, d):

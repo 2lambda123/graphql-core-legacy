@@ -11,7 +11,7 @@ if False:  # flake8: noqa
 MIDDLEWARE_RESOLVER_FUNCTION = "resolve"
 
 
-class MiddlewareManager(object):
+class MiddlewareManager:
     __slots__ = (
         "middlewares",
         "wrap_in_promise",

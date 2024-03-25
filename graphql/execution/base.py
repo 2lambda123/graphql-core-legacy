@@ -21,7 +21,7 @@ if False:  # flake8: noqa
     from ..type.schema import GraphQLSchema
 
 
-class ExecutionResult(object):
+class ExecutionResult:
     """The result of execution. `data` is the result of executing the
     query, `errors` is null if no errors occurred, and is a
     non-empty array if an error occurred."""
@@ -66,7 +66,7 @@ class ExecutionResult(object):
         return response
 
 
-class ResolveInfo(object):
+class ResolveInfo:
     __slots__ = (
         "field_name",
         "field_asts",

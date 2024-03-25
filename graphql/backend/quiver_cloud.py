@@ -6,7 +6,7 @@ except ImportError:
         "You can install it using: pip install requests"
     )
 
-from six.moves.urllib.parse import urlparse
+from urllib.parse import urlparse
 
 from ..utils.schema_printer import print_schema
 from .base import GraphQLBackend
@@ -32,7 +32,7 @@ mutation($schemaDsl: String!, $query: String!, $pythonOptions: PythonOptions) {
 
 class GraphQLQuiverCloudBackend(GraphQLBackend):
     def __init__(self, dsn, python_options=None, **options):
-        super(GraphQLQuiverCloudBackend, self).__init__(**options)
+        super().__init__(**options)
         try:
             url = urlparse(dsn.strip())
         except Exception:

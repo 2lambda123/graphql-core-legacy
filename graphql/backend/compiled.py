@@ -21,7 +21,7 @@ class GraphQLCompiledDocument(GraphQLDocument):
         """Creates a GraphQLDocument object from compiled code and the globals.  This
         is used by the loaders and schema to create a document object.
         """
-        if isinstance(code, string_types):
+        if isinstance(code, str):
             filename = "<document>"
             code = compile(code, filename, "exec")
         namespace = {"__file__": code.co_filename}

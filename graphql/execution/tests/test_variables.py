@@ -30,9 +30,9 @@ TestComplexScalar = GraphQLScalarType(
     name="ComplexScalar",
     serialize=lambda v: "SerializedValue" if v == "DeserializedValue" else None,
     parse_value=lambda v: "DeserializedValue" if v == "SerializedValue" else None,
-    parse_literal=lambda v: "DeserializedValue"
-    if v.value == "SerializedValue"
-    else None,
+    parse_literal=lambda v: (
+        "DeserializedValue" if v.value == "SerializedValue" else None
+    ),
 )
 
 

@@ -75,7 +75,7 @@ def test_executes_using_a_schema():
 
     BlogSchema = GraphQLSchema(BlogQuery)
 
-    class Article(object):
+    class Article:
         def __init__(self, id):
             # type: (int) -> None
             self.id = id
@@ -86,7 +86,7 @@ def test_executes_using_a_schema():
             self.hidden = "This data is not exposed in the schema"
             self.keywords = ["foo", "bar", 1, True, None]
 
-    class Author(object):
+    class Author:
         id = 123
         name = "John Smith"
 
@@ -99,7 +99,7 @@ def test_executes_using_a_schema():
             # type: () -> Article
             return Article(1)
 
-    class Pic(object):
+    class Pic:
         def __init__(self, uid, width, height):
             # type: (int, int, int) -> None
             self.url = "cdn://{}".format(uid)

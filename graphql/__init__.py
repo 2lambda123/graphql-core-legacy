@@ -21,6 +21,7 @@ following two import statements are equivalent:
     from graphql import parse
     from graphql.language.base import parse
 """
+
 from .pyutils.version import get_version
 
 # The primary entry point into fulfilling a GraphQL request.

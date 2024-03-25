@@ -18,7 +18,6 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-from __future__ import absolute_import
 
 import operator
 import sys
@@ -73,7 +72,7 @@ if PY3:
     Iterator = object
 else:
 
-    class Iterator(object):
+    class Iterator:
         def next(self):
             return type(self).__next__(self)
 
@@ -91,7 +90,6 @@ if PY3:
 
     def iterlists(d, **kw):
         return iter(d.lists(**kw))
-
 
 else:
 
@@ -148,7 +146,6 @@ if PY3:
         finally:
             value = None
             tb = None
-
 
 else:
 

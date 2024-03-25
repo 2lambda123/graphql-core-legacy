@@ -27,7 +27,7 @@ if False:  # flake8: noqa
 class GraphQLTypeMap(OrderedDict):
     def __init__(self, types):
         # type: (List[GraphQLNamedType]) -> None
-        super(GraphQLTypeMap, self).__init__()
+        super().__init__()
         self.update(reduce(self.reducer, types, OrderedDict()))  # type: ignore
         self._possible_type_map = defaultdict(set)  # type: DefaultDict[str, Set[str]]
 
@@ -128,7 +128,7 @@ class GraphQLTypeMap(OrderedDict):
                     )
                     for arg_name, arg in field.args.items():
                         assert isinstance(
-                            arg, (GraphQLArgument, GraphQLArgument)
+                            arg, GraphQLArgument
                         ), "{}.{}({}:) argument must be an instance of GraphQLArgument.".format(
                             type_, field_name, arg_name
                         )

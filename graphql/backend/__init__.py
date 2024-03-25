@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 This module provides a dynamic way of using different
 engines for a GraphQL schema query resolution.

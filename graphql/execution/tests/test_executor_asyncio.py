@@ -1,6 +1,7 @@
 """
    isort:skip_file
 """
+
 # type: ignore
 # flake8: noqa
 
