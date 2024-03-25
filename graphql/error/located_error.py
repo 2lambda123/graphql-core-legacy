@@ -39,7 +39,7 @@ class GraphQLLocatedError(GraphQLError):
         extensions = (
             getattr(original_error, "extensions", None) if original_error else None
         )
-        super(GraphQLLocatedError, self).__init__(
+        super().__init__(
             message=message, nodes=nodes, stack=stack, path=path, extensions=extensions
         )
         self.original_error = original_error

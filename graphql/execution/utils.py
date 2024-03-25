@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import logging
 from traceback import format_exception
 
@@ -35,7 +34,7 @@ if False:  # flake8: noqa
 logger = logging.getLogger(__name__)
 
 
-class ExecutionContext(object):
+class ExecutionContext:
     """Data that must be available at all points during query execution.
 
     Namely, schema of the type system that is currently executing,
@@ -95,7 +94,7 @@ class ExecutionContext(object):
 
             else:
                 raise GraphQLError(
-                    u"GraphQL cannot execute a request containing a {}.".format(
+                    "GraphQL cannot execute a request containing a {}.".format(
                         definition.__class__.__name__
                     ),
                     [definition],
@@ -104,7 +103,7 @@ class ExecutionContext(object):
         if not operation:
             if operation_name:
                 raise GraphQLError(
-                    u'Unknown operation named "{}".'.format(operation_name)
+                    'Unknown operation named "{}".'.format(operation_name)
                 )
 
             else:
@@ -175,7 +174,7 @@ class ExecutionContext(object):
         return self._subfields_cache[k]
 
 
-class SubscriberExecutionContext(object):
+class SubscriberExecutionContext:
     __slots__ = "exe_context", "errors"
 
     def __init__(self, exe_context):
@@ -351,7 +350,8 @@ def get_field_entry_key(node):
 def default_resolve_fn(source, info, **args):
     # type: (Any, ResolveInfo, **Any) -> Optional[Any]
     """If a resolve function is not given, then a default resolve behavior is used which takes the property of the source object
-    of the same name as the field and returns it as the result, or if it's a function, returns the result of calling that function."""
+    of the same name as the field and returns it as the result, or if it's a function, returns the result of calling that function.
+    """
     name = info.field_name
     if isinstance(source, dict):
         property = source.get(name)

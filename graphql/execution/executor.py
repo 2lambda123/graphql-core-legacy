@@ -3,7 +3,7 @@ import collections
 try:
     from collections.abc import Iterable
 except ImportError:  # Python < 3.3
-    from collections import Iterable
+    from collections.abc import Iterable
 import functools
 import logging
 import sys
@@ -572,7 +572,7 @@ def complete_value(
             exe_context, return_type, field_asts, info, path, result
         )
 
-    assert False, u'Cannot complete value of unexpected type "{}".'.format(return_type)
+    assert False, 'Cannot complete value of unexpected type "{}".'.format(return_type)
 
 
 def complete_list_value(
@@ -657,7 +657,7 @@ def complete_abstract_value(
         else:
             runtime_type = get_default_resolve_type_fn(result, info, return_type)
 
-    if isinstance(runtime_type, string_types):
+    if isinstance(runtime_type, str):
         runtime_type = info.schema.get_type(runtime_type)  # type: ignore
 
     if not isinstance(runtime_type, GraphQLObjectType):
@@ -673,7 +673,7 @@ def complete_abstract_value(
 
     if not exe_context.schema.is_possible_type(return_type, runtime_type):
         raise GraphQLError(
-            u'Runtime Object type "{}" is not a possible type for "{}".'.format(
+            'Runtime Object type "{}" is not a possible type for "{}".'.format(
                 runtime_type, return_type
             ),
             field_asts,
@@ -711,7 +711,7 @@ def complete_object_value(
     """
     if return_type.is_type_of and not return_type.is_type_of(result, info):
         raise GraphQLError(
-            u'Expected value of type "{}" but got: {}.'.format(
+            'Expected value of type "{}" but got: {}.'.format(
                 return_type, type(result).__name__
             ),
             field_asts,

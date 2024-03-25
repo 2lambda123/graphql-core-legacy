@@ -13,7 +13,7 @@ class NoFragmentCycles(ValidationRule):
 
     def __init__(self, context):
         # type: (ValidationContext) -> None
-        super(NoFragmentCycles, self).__init__(context)
+        super().__init__(context)
         self.errors = []  # type: List[GraphQLError]
         self.visited_frags = set()  # type: Set[str]
         self.spread_path = []  # type: List[FragmentSpread]

@@ -28,7 +28,7 @@ from .utils import rejected, resolved
 @mark.xfail
 def test_executes_arbitary_code():
     # type: () -> None
-    class Data(object):
+    class Data:
         a = "Apple"
         b = "Banana"
         c = "Cookie"
@@ -52,7 +52,7 @@ def test_executes_arbitary_code():
             # type: () -> Promise
             return resolved(Data())
 
-    class DeepData(object):
+    class DeepData:
         a = "Already Been Done"
         b = "Boring"
         c = ["Contrived", None, resolved("Confusing")]

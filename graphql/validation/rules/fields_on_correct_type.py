@@ -40,8 +40,8 @@ class OrderedCounter(Counter, OrderedDict):
 class FieldsOnCorrectType(ValidationRule):
     """Fields on correct type
 
-      A GraphQL document is only valid if all fields selected are defined by the
-      parent type, or are an allowed meta field such as __typenamme
+    A GraphQL document is only valid if all fields selected are defined by the
+    parent type, or are an allowed meta field such as __typenamme
     """
 
     def enter_Field(
@@ -90,9 +90,9 @@ class FieldsOnCorrectType(ValidationRule):
 
 def get_suggested_type_names(schema, output_type, field_name):
     """Go through all of the implementations of type, as well as the interfaces
-      that they implement. If any of those types include the provided field,
-      suggest them, sorted by how often the type is referenced,  starting
-      with Interfaces."""
+    that they implement. If any of those types include the provided field,
+    suggest them, sorted by how often the type is referenced,  starting
+    with Interfaces."""
 
     if isinstance(output_type, (GraphQLInterfaceType, GraphQLUnionType)):
         suggested_object_types = []

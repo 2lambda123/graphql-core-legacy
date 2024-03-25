@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """Tests for `graphql.backend.core` module."""
 
 import pytest
@@ -40,7 +39,7 @@ class BaseExecutor(SyncExecutor):
     def execute(self, *args, **kwargs):
         # type: (*Any, **Any) -> str
         self.executed = True
-        return super(BaseExecutor, self).execute(*args, **kwargs)
+        return super().execute(*args, **kwargs)
 
 
 def test_backend_can_execute_custom_executor():

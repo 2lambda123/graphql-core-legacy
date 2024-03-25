@@ -13,7 +13,7 @@ class UniqueFragmentNames(ValidationRule):
 
     def __init__(self, context):
         # type: (ValidationContext) -> None
-        super(UniqueFragmentNames, self).__init__(context)
+        super().__init__(context)
         self.known_fragment_names = {}  # type: Dict[str, Name]
 
     def enter_OperationDefinition(

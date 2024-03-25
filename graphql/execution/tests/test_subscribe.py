@@ -130,8 +130,8 @@ def create_subscription(
     vars=None,  # type: Optional[Any]
 ):
     # type: (...) -> Tuple[Callable, Union[ExecutionResult, Observable]]
-    class Root(object):
-        class inbox(object):
+    class Root:
+        class inbox:
             emails = [
                 Email(
                     from_="joe@graphql.org",

@@ -11,7 +11,7 @@ schema = GraphQLSchema(
 )
 
 
-class Data(object):
+class Data:
     a = "a"
     b = "b"
 

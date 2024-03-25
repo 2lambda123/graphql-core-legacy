@@ -55,7 +55,7 @@ def parse(source, **kwargs):
     options = {"no_location": False, "no_source": False}
     options.update(kwargs)
 
-    if isinstance(source, string_types):
+    if isinstance(source, str):
         source_obj = Source(source)  # type: Source
     else:
         source_obj = source  # type: ignore
@@ -69,14 +69,14 @@ def parse_value(source, **kwargs):
     options.update(kwargs)
     source_obj = source
 
-    if isinstance(source, string_types):
+    if isinstance(source, str):
         source_obj = Source(source)
 
     parser = Parser(source_obj, options)
     return parse_value_literal(parser, False)
 
 
-class Parser(object):
+class Parser:
     __slots__ = "lexer", "source", "options", "prev_end", "token"
 
     def __init__(self, source, options):
@@ -88,7 +88,7 @@ class Parser(object):
         self.token = self.lexer.next_token()
 
 
-class Loc(object):
+class Loc:
     __slots__ = "start", "end", "source"
 
     def __init__(self, start, end, source=None):
@@ -163,7 +163,7 @@ def expect(parser, kind):
     raise GraphQLSyntaxError(
         parser.source,
         token.start,
-        u"Expected {}, found {}".format(
+        "Expected {}, found {}".format(
             get_token_kind_desc(kind), get_token_desc(token)
         ),
     )
@@ -182,7 +182,7 @@ def expect_keyword(parser, value):
     raise GraphQLSyntaxError(
         parser.source,
         token.start,
-        u'Expected "{}", found {}'.format(value, get_token_desc(token)),
+        'Expected "{}", found {}'.format(value, get_token_desc(token)),
     )
 
 
@@ -192,7 +192,7 @@ def unexpected(parser, at_token=None):
     is encountered."""
     token = at_token or parser.token
     return GraphQLSyntaxError(
-        parser.source, token.start, u"Unexpected {}".format(get_token_desc(token))
+        parser.source, token.start, "Unexpected {}".format(get_token_desc(token))
     )
 
 
@@ -336,9 +336,11 @@ def parse_variable_definition(parser):
     return ast.VariableDefinition(
         variable=parse_variable(parser),
         type=expect(parser, TokenKind.COLON) and parse_type(parser),
-        default_value=parse_value_literal(parser, True)
-        if skip(parser, TokenKind.EQUALS)
-        else None,
+        default_value=(
+            parse_value_literal(parser, True)
+            if skip(parser, TokenKind.EQUALS)
+            else None
+        ),
         loc=loc(parser, start),
     )
 
@@ -386,9 +388,9 @@ def parse_field(parser):
         name=name,
         arguments=parse_arguments(parser),
         directives=parse_directives(parser),
-        selection_set=parse_selection_set(parser)
-        if peek(parser, TokenKind.BRACE_L)
-        else None,
+        selection_set=(
+            parse_selection_set(parser) if peek(parser, TokenKind.BRACE_L) else None
+        ),
         loc=loc(parser, start),
     )
 
@@ -448,9 +450,9 @@ def parse_fragment_definition(parser):
 
     return ast.FragmentDefinition(
         name=parse_fragment_name(parser),
-        type_condition=parse_named_type(parser)
-        if expect_keyword(parser, "on")
-        else None,
+        type_condition=(
+            parse_named_type(parser) if expect_keyword(parser, "on") else None
+        ),
         directives=parse_directives(parser),
         selection_set=parse_selection_set(parser),
         loc=loc(parser, start),
@@ -608,19 +610,19 @@ def parse_named_type(parser):
 def parse_type_system_definition(parser):
     # type: (Parser) -> Any
     """
-      TypeSystemDefinition :
-        - SchemaDefinition
-        - TypeDefinition
-        - TypeExtensionDefinition
-        - DirectiveDefinition
+    TypeSystemDefinition :
+      - SchemaDefinition
+      - TypeDefinition
+      - TypeExtensionDefinition
+      - DirectiveDefinition
 
-      TypeDefinition :
-      - ScalarTypeDefinition
-      - ObjectTypeDefinition
-      - InterfaceTypeDefinition
-      - UnionTypeDefinition
-      - EnumTypeDefinition
-      - InputObjectTypeDefinition
+    TypeDefinition :
+    - ScalarTypeDefinition
+    - ObjectTypeDefinition
+    - InterfaceTypeDefinition
+    - UnionTypeDefinition
+    - EnumTypeDefinition
+    - InputObjectTypeDefinition
     """
     if not peek(parser, TokenKind.NAME):
         raise unexpected(parser)
@@ -752,9 +754,9 @@ def parse_input_value_def(parser):
     return ast.InputValueDefinition(
         name=parse_name(parser),
         type=expect(parser, TokenKind.COLON) and parse_type(parser),  # type: ignore
-        default_value=parse_const_value(parser)
-        if skip(parser, TokenKind.EQUALS)
-        else None,
+        default_value=(
+            parse_const_value(parser) if skip(parser, TokenKind.EQUALS) else None
+        ),
         directives=parse_directives(parser),
         loc=loc(parser, start),
     )

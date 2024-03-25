@@ -36,7 +36,7 @@ def test_it_converts_numeric_values_to_float_asts():
 def test_it_converts_string_values_to_asts():
     assert ast_from_value("hello") == ast.StringValue("hello")
     assert ast_from_value("VALUE") == ast.StringValue("VALUE")
-    assert ast_from_value(u"VAL\nUE") == ast.StringValue("VAL\\nUE")
+    assert ast_from_value("VAL\nUE") == ast.StringValue("VAL\\nUE")
     assert ast_from_value("VAL\nUE") == ast.StringValue("VAL\\nUE")
     assert ast_from_value("123") == ast.StringValue("123")
 

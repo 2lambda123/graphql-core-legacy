@@ -23,7 +23,7 @@ logger = logging.getLogger("graphql.errors")
 # https://github.com/getsentry/raven-python/blob/master/raven/transport/threaded.py
 # Why to create when we can take something that works?
 # Attributions to the Sentry team :)
-class AsyncWorker(object):
+class AsyncWorker:
     _terminator = object()
 
     def __init__(self, shutdown_timeout=DEFAULT_TIMEOUT):
@@ -181,7 +181,7 @@ class GraphQLDeciderBackend(GraphQLCachedBackend):
 
         self.fallback_backend = fallback_backend  # type: ignore
         self.worker_class = worker_class
-        super(GraphQLDeciderBackend, self).__init__(
+        super().__init__(
             backend, cache_map=cache_map, use_consistent_hash=use_consistent_hash
         )
 

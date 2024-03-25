@@ -42,8 +42,7 @@ def pop(lst):
 
 
 # noinspection PyPep8Naming
-@six.add_metaclass(visitor_meta.VisitorMeta)
-class TypeInfo(object):
+class TypeInfo(metaclass=visitor_meta.VisitorMeta):
     __slots__ = (
         "_schema",
         "_type_stack",

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """Tests for `graphql.backend.decider` module."""
 
 import pytest

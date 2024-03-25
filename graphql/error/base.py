@@ -35,7 +35,7 @@ class GraphQLError(Exception):
         extensions=None,  # type: Optional[Dict[str, Any]]
     ):
         # type: (...) -> None
-        super(GraphQLError, self).__init__(message)
+        super().__init__(message)
         self.message = message
         self.nodes = nodes
         self.stack = stack
@@ -69,7 +69,7 @@ class GraphQLError(Exception):
     def reraise(self):
         # type: () -> None
         if self.stack:
-            six.reraise(type(self), self, self.stack)
+            raise self.with_traceback(self.stack)
         else:
             raise self
 
