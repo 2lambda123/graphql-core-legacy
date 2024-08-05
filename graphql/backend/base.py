@@ -11,7 +11,7 @@ if False:  # flake8: noqa
     from ..type.schema import GraphQLSchema
 
 
-class GraphQLBackend(six.with_metaclass(ABCMeta)):
+class GraphQLBackend(metaclass=ABCMeta):
     @abstractmethod
     def document_from_string(self, schema, request_string):
         raise NotImplementedError(
@@ -19,7 +19,7 @@ class GraphQLBackend(six.with_metaclass(ABCMeta)):
         )
 
 
-class GraphQLDocument(object):
+class GraphQLDocument:
     def __init__(self, schema, document_string, document_ast, execute):
         # type: (GraphQLSchema, str, Document, Callable) -> None
         self.schema = schema

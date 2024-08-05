@@ -42,7 +42,7 @@ class OverlappingFieldsCanBeMerged(ValidationRule):
 
     def __init__(self, context):
         # type: (ValidationContext) -> None
-        super(OverlappingFieldsCanBeMerged, self).__init__(context)
+        super().__init__(context)
         # A memoization for when two fragments are compared "between" each other for
         # conflicts. Two fragments may be compared many times, so memoizing this can
         # dramatically improve the performance of this validator.
@@ -179,7 +179,7 @@ def _find_conflicts_within_selection_set(
     # type: (...) ->  List[Tuple[Tuple[str, str], List[Node], List[Node]]]
     """Find all conflicts found "within" a selection set, including those found via spreading in fragments.
 
-       Called when visiting each SelectionSet in the GraphQL Document.
+    Called when visiting each SelectionSet in the GraphQL Document.
     """
     conflicts = []  # type: List[Tuple[Tuple[str, str], List[Node], List[Node]]]
     field_map, fragment_names = _get_fields_and_fragments_names(
@@ -360,8 +360,8 @@ def _find_conflicts_between_sub_selection_sets(
     # type: (...) ->  List[Tuple[Tuple[str, str], List[Node], List[Node]]]
     """Find all conflicts found between two selection sets.
 
-       Includes those found via spreading in fragments. Called when determining if conflicts exist
-       between the sub-fields of two overlapping fields.
+    Includes those found via spreading in fragments. Called when determining if conflicts exist
+    between the sub-fields of two overlapping fields.
     """
     conflicts = []  # type: List[Tuple[Tuple[str, str], List[Node], List[Node]]]
 
@@ -474,9 +474,9 @@ def _collect_conflicts_between(
     # type: (...) -> None
     """Collect all Conflicts between two collections of fields.
 
-       This is similar to, but different from the `collect_conflicts_within` function above. This check assumes that
-       `collect_conflicts_within` has already been called on each provided collection of fields.
-       This is true because this validator traverses each individual selection set.
+    This is similar to, but different from the `collect_conflicts_within` function above. This check assumes that
+    `collect_conflicts_within` has already been called on each provided collection of fields.
+    This is true because this validator traverses each individual selection set.
     """
     # A field map is a keyed collection, where each key represents a response
     # name and the value at that key is a list of all fields which provide that

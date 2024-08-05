@@ -44,7 +44,7 @@ def ast_from_value(value, type=None):
 
         return ast.FloatValue(string_num)
 
-    if isinstance(value, string_types):
+    if isinstance(value, str):
         if isinstance(type, GraphQLEnumType) and COMPILED_NAME_PATTERN.match(value):
             return ast.EnumValue(value)
 

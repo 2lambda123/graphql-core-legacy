@@ -1,5 +1,4 @@
 # type: ignore
-from __future__ import print_function
 
 import json
 
@@ -30,7 +29,7 @@ def test_middleware():
         not_ok
     }"""
 
-    class Data(object):
+    class Data:
         def ok(self):
             # type: () -> str
             return "ok"
@@ -63,7 +62,7 @@ def test_middleware_class():
         not_ok
     }"""
 
-    class Data(object):
+    class Data:
         def ok(self):
             # type: () -> str
             return "ok"
@@ -79,7 +78,7 @@ def test_middleware_class():
         {"ok": GraphQLField(GraphQLString), "not_ok": GraphQLField(GraphQLString)},
     )
 
-    class MyMiddleware(object):
+    class MyMiddleware:
         def resolve(self, next, *args, **kwargs):
             # type: (Callable, *Any, **Any) -> Promise
             p = next(*args, **kwargs)
@@ -97,7 +96,7 @@ def test_middleware_skip_promise_wrap():
         not_ok
     }"""
 
-    class Data(object):
+    class Data:
         def ok(self):
             # type: () -> str
             return "ok"
@@ -113,12 +112,12 @@ def test_middleware_skip_promise_wrap():
         {"ok": GraphQLField(GraphQLString), "not_ok": GraphQLField(GraphQLString)},
     )
 
-    class MyPromiseMiddleware(object):
+    class MyPromiseMiddleware:
         def resolve(self, next, *args, **kwargs):
             # type: (Callable, *Any, **Any) -> Promise
             return Promise.resolve(next(*args, **kwargs))
 
-    class MyEmptyMiddleware(object):
+    class MyEmptyMiddleware:
         def resolve(self, next, *args, **kwargs):
             # type: (Callable, *Any, **Any) -> str
             return next(*args, **kwargs)
@@ -144,7 +143,7 @@ def test_middleware_skip_promise_wrap():
 
 def test_middleware_chain(capsys):
     # type: (Any) -> None
-    class CharPrintingMiddleware(object):
+    class CharPrintingMiddleware:
         def __init__(self, char):
             # type: (str) -> None
             self.char = char

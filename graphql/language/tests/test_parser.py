@@ -19,9 +19,7 @@ def test_empty_parse():
     # type: () -> None
     with raises(GraphQLSyntaxError) as excinfo:
         parse("")
-    assert (
-        u"Syntax Error GraphQL (1:1) Unexpected EOF\n" u"\n"
-    ) == excinfo.value.message
+    assert ("Syntax Error GraphQL (1:1) Unexpected EOF\n" "\n") == excinfo.value.message
 
 
 def test_parse_provides_useful_errors():
@@ -29,11 +27,11 @@ def test_parse_provides_useful_errors():
     with raises(GraphQLSyntaxError) as excinfo:
         parse("""{""")
     assert (
-        u"Syntax Error GraphQL (1:2) Expected Name, found EOF\n"
-        u"\n"
-        u"1: {\n"
-        u"    ^\n"
-        u""
+        "Syntax Error GraphQL (1:2) Expected Name, found EOF\n"
+        "\n"
+        "1: {\n"
+        "    ^\n"
+        ""
     ) == excinfo.value.message
 
     assert excinfo.value.positions == [1]
@@ -112,7 +110,7 @@ def test_does_not_allow_null_value():
 def test_parses_multi_byte_characters():
     # type: () -> None
     result = parse(
-        u"""
+        """
         # This comment has a \u0A0A multi-byte character.
         { field(arg: "Has a \u0A0A multi-byte character.") }
     """,
@@ -130,12 +128,12 @@ def test_parses_multi_byte_characters():
                     selections=[
                         ast.Field(
                             alias=None,
-                            name=ast.Name(value=u"field"),
+                            name=ast.Name(value="field"),
                             arguments=[
                                 ast.Argument(
-                                    name=ast.Name(value=u"arg"),
+                                    name=ast.Name(value="arg"),
                                     value=ast.StringValue(
-                                        value=u"Has a \u0a0a multi-byte character."
+                                        value="Has a \u0a0a multi-byte character."
                                     ),
                                 )
                             ],

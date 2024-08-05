@@ -13,7 +13,7 @@ class UniqueVariableNames(ValidationRule):
 
     def __init__(self, context):
         # type: (ValidationContext) -> None
-        super(UniqueVariableNames, self).__init__(context)
+        super().__init__(context)
         self.known_variable_names = {}  # type: Dict[str, str]
 
     def enter_OperationDefinition(

@@ -69,7 +69,7 @@ def test_batches_correctly(executor):
             load_calls.append(keys)
             return Promise.resolve(keys)
 
-    class Context(object):
+    class Context:
         business_data_loader = BusinessDataLoader()
 
     result = execute(schema, doc_ast, None, context_value=Context(), executor=executor)
@@ -157,7 +157,7 @@ def test_batches_multiple_together(executor):
             location_load_calls.append(keys)
             return Promise.resolve(keys)
 
-    class Context(object):
+    class Context:
         business_data_loader = BusinessDataLoader()
         location_data_loader = LocationDataLoader()
 

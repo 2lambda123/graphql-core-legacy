@@ -14,7 +14,7 @@ class NoUnusedVariables(ValidationRule):
     def __init__(self, context):
         # type: (ValidationContext) -> None
         self.variable_definitions = []  # type: List[VariableDefinition]
-        super(NoUnusedVariables, self).__init__(context)
+        super().__init__(context)
 
     def enter_OperationDefinition(
         self,

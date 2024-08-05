@@ -24,7 +24,7 @@ try:
     from collections import OrderedDict  # type: ignore
 except ImportError:
 
-    class OrderedDict(object):  # type: ignore
+    class OrderedDict:  # type: ignore
         pass
 
 
@@ -42,7 +42,7 @@ except NameError:
     unicode = str
 
 
-class _RouteClassAttributeToGetattr(object):
+class _RouteClassAttributeToGetattr:
     """Route attribute access on a class to __getattr__.
 
     This is a descriptor, used to define attributes that act differently when
@@ -113,7 +113,7 @@ class _EnumDict(OrderedDict):
     """
 
     def __init__(self):
-        super(_EnumDict, self).__init__()
+        super().__init__()
         self._member_names = []
 
     def __setitem__(self, key, value):
@@ -149,7 +149,7 @@ class _EnumDict(OrderedDict):
                 # enum overwriting a descriptor?
                 raise TypeError("Key already defined as: %r" % self[key])
             self._member_names.append(key)
-        super(_EnumDict, self).__setitem__(key, value)
+        super().__setitem__(key, value)
 
 
 # Dummy value for Enum as EnumMeta explicity checks for it, but of course until
@@ -219,7 +219,7 @@ class EnumMeta(type):
         # the shortcut of storing members in the class dict
         base_attributes = {a for b in bases for a in b.__dict__}
         # create our new Enum type
-        enum_class = super(EnumMeta, metacls).__new__(metacls, cls, bases, classdict)
+        enum_class = super().__new__(metacls, cls, bases, classdict)
         enum_class._member_names_ = []  # names in random order
         if OrderedDict is not None:
             enum_class._member_map_ = OrderedDict()
@@ -380,7 +380,7 @@ class EnumMeta(type):
         # (see issue19025).
         if attr in cls._member_map_:
             raise AttributeError("%s: cannot delete Enum member." % cls.__name__)
-        super(EnumMeta, cls).__delattr__(attr)
+        super().__delattr__(attr)
 
     def __dir__(self):
         return [
@@ -444,7 +444,7 @@ class EnumMeta(type):
         member_map = cls.__dict__.get("_member_map_", {})
         if name in member_map:
             raise AttributeError("Cannot reassign members.")
-        super(EnumMeta, cls).__setattr__(name, value)
+        super().__setattr__(name, value)
 
     def _create_(cls, class_name, names=None, module=None, type=None, start=1):
         """Convenience method to create a new Enum class.
@@ -663,9 +663,9 @@ class EnumMeta(type):
 # create the class.
 ########################################################
 temp_enum_dict = {}
-temp_enum_dict[
-    "__doc__"
-] = "Generic enumeration.\n\n    Derive from this class to define new enumerations.\n\n"
+temp_enum_dict["__doc__"] = (
+    "Generic enumeration.\n\n    Derive from this class to define new enumerations.\n\n"
+)
 
 
 def __new__(cls, value):

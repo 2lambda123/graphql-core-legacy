@@ -14,7 +14,7 @@ class NoUndefinedVariables(ValidationRule):
     def __init__(self, context):
         # type: (ValidationContext) -> None
         self.defined_variable_names = set()  # type: Set[str]
-        super(NoUndefinedVariables, self).__init__(context)
+        super().__init__(context)
 
     @staticmethod
     def undefined_var_message(var_name, op_name=None):

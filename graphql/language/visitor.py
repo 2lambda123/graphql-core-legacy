@@ -11,7 +11,7 @@ if False:  # flake8: noqa
     from ..utils.type_info import TypeInfo
 
 
-class _Falsey(object):
+class _Falsey:
     def __nonzero__(self):
         return False
 
@@ -20,7 +20,7 @@ class _Falsey(object):
         return False
 
 
-class _Break(object):
+class _Break:
     pass
 
 
@@ -28,7 +28,7 @@ BREAK = _Break()
 REMOVE = _Falsey()
 
 
-class Stack(object):
+class Stack:
     __slots__ = "in_array", "index", "keys", "edits", "prev"
 
     def __init__(self, in_array, index, keys, edits, prev):
@@ -170,8 +170,7 @@ def visit(root, visitor, key_map=None):
     return new_root
 
 
-@six.add_metaclass(VisitorMeta)
-class Visitor(object):
+class Visitor(metaclass=VisitorMeta):
     __slots__ = ()
 
     def enter(

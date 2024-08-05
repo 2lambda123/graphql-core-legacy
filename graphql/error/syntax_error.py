@@ -13,8 +13,8 @@ class GraphQLSyntaxError(GraphQLError):
     def __init__(self, source, position, description):
         # type: (Source, int, str) -> None
         location = get_location(source, position)
-        super(GraphQLSyntaxError, self).__init__(
-            message=u"Syntax Error {} ({}:{}) {}\n\n{}".format(
+        super().__init__(
+            message="Syntax Error {} ({}:{}) {}\n\n{}".format(
                 source.name,
                 location.line,
                 location.column,
@@ -31,8 +31,8 @@ def highlight_source_at_location(source, location):
     line = location.line
     lines = source.body.splitlines()
     pad_len = len(str(line + 1))
-    result = u""
-    format = (u"{:>" + str(pad_len) + "}: {}\n").format
+    result = ""
+    format = ("{:>" + str(pad_len) + "}: {}\n").format
     if line >= 2:
         result += format(line - 1, lines[line - 2])
     if line <= len(lines):

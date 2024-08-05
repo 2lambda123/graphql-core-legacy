@@ -1,5 +1,4 @@
 # type: ignore
-# coding: utf-8
 
 from graphql import (
     GraphQLField,
@@ -18,7 +17,7 @@ def test_unicode_error_message():
 
     def resolver(context, *_):
         # type: (Optional[Any], *ResolveInfo) -> NoReturn
-        raise Exception(u"UNIÇODÉ!")
+        raise Exception("UNIÇODÉ!")
 
     Type = GraphQLObjectType(
         "Type", {"unicode": GraphQLField(GraphQLString, resolver=resolver)}

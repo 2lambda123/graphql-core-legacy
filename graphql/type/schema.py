@@ -1,7 +1,7 @@
 try:
     from collections.abc import Iterable
 except ImportError:  # Python < 3.3
-    from collections import Iterable
+    from collections.abc import Iterable
 
 from collections import namedtuple
 from typing import Dict, Union, List, Optional
@@ -21,7 +21,7 @@ from .typemap import GraphQLTypeMap
 InterfaceImplementations = namedtuple("InterfaceImplementations", "objects, interfaces")
 
 
-class GraphQLSchema(object):
+class GraphQLSchema:
     """Schema Definition
 
     A Schema is created by supplying the root types of each type of operation, query and mutation (optional).

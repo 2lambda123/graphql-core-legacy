@@ -21,7 +21,7 @@ def is_valid_literal_value(type, value_ast):
     if isinstance(type, GraphQLNonNull):
         of_type = type.of_type
         if not value_ast:
-            return [u'Expected "{}", found null.'.format(type)]
+            return ['Expected "{}", found null.'.format(type)]
 
         return is_valid_literal_value(of_type, value_ast)  # type: ignore
 
@@ -39,7 +39,7 @@ def is_valid_literal_value(type, value_ast):
             for i, item_ast in enumerate(value_ast.values):
                 item_errors = is_valid_literal_value(item_type, item_ast)
                 for error in item_errors:
-                    errors.append(u"In element #{}: {}".format(i, error))
+                    errors.append("In element #{}: {}".format(i, error))
 
             return errors
 
@@ -47,7 +47,7 @@ def is_valid_literal_value(type, value_ast):
 
     if isinstance(type, GraphQLInputObjectType):
         if not isinstance(value_ast, ast.ObjectValue):
-            return [u'Expected "{}", found not an object.'.format(type)]
+            return ['Expected "{}", found not an object.'.format(type)]
 
         fields = type.fields
         field_asts = value_ast.fields
@@ -56,7 +56,7 @@ def is_valid_literal_value(type, value_ast):
         for provided_field_ast in field_asts:
             if provided_field_ast.name.value not in fields:
                 errors.append(
-                    u'In field "{}": Unknown field.'.format(
+                    'In field "{}": Unknown field.'.format(
                         provided_field_ast.name.value
                     )
                 )
@@ -74,7 +74,7 @@ def is_valid_literal_value(type, value_ast):
                 field.type, get_field_ast_value(field_name)
             )
             errors.extend(
-                u'In field "{}": {}'.format(field_name, e) for e in subfield_errors
+                'In field "{}": {}'.format(field_name, e) for e in subfield_errors
             )
 
         return errors
@@ -83,8 +83,6 @@ def is_valid_literal_value(type, value_ast):
 
     parse_result = type.parse_literal(value_ast)
     if parse_result is None:
-        return [
-            u'Expected type "{}", found {}.'.format(type.name, print_ast(value_ast))
-        ]
+        return ['Expected type "{}", found {}.'.format(type.name, print_ast(value_ast))]
 
     return _empty_list

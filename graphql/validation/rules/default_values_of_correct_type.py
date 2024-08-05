@@ -54,13 +54,13 @@ class DefaultValuesOfCorrectType(ValidationRule):
     @staticmethod
     def default_for_non_null_arg_message(var_name, type, guess_type):
         return (
-            u'Variable "${}" of type "{}" is required and will not use the default value. '
-            u'Perhaps you meant to use type "{}".'.format(var_name, type, guess_type)
+            'Variable "${}" of type "{}" is required and will not use the default value. '
+            'Perhaps you meant to use type "{}".'.format(var_name, type, guess_type)
         )
 
     @staticmethod
     def bad_value_for_default_arg_message(var_name, type, value, verbose_errors):
-        message = (u"\n" + u"\n".join(verbose_errors)) if verbose_errors else u""
-        return u'Variable "${}" of type "{}" has invalid default value: {}.{}'.format(
+        message = ("\n" + "\n".join(verbose_errors)) if verbose_errors else ""
+        return 'Variable "${}" of type "{}" has invalid default value: {}.{}'.format(
             var_name, type, value, message
         )

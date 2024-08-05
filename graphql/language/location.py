@@ -6,7 +6,7 @@ if False:  # flake8: noqa
 __all__ = ["get_location", "SourceLocation"]
 
 
-class SourceLocation(object):
+class SourceLocation:
     __slots__ = "line", "column"
 
     def __init__(self, line, column):

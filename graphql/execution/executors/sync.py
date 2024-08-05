@@ -3,7 +3,7 @@ if False:  # flake8: noqa
     from typing import Any, Callable
 
 
-class SyncExecutor(object):
+class SyncExecutor:
     def wait_until_finished(self):
         # type: () -> None
         pass
