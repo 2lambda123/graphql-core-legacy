@@ -24,7 +24,7 @@ from promise import Promise
 
 def test_executes_arbitary_code():
     # type: () -> None
-    class Data(object):
+    class Data:
         a = "Apple"
         b = "Banana"
         c = "Cookie"
@@ -45,7 +45,7 @@ def test_executes_arbitary_code():
             # FIXME: promise is unsupported
             return Data()
 
-    class DeepData(object):
+    class DeepData:
         a = "Already Been Done"
         b = "Boring"
         c = ["Contrived", None, "Confusing"]
@@ -192,7 +192,7 @@ def test_threads_root_value_context_correctly():
     # type: () -> None
     doc = "query Example { a }"
 
-    class Data(object):
+    class Data:
         context_thing = "thing"
 
     ast = parse(doc)
@@ -257,7 +257,7 @@ def test_nulls_out_error_subtrees():
         error
     }"""
 
-    class Data(object):
+    class Data:
         def ok(self):
             # type: () -> str
             return "ok"
@@ -284,7 +284,7 @@ def test_uses_the_inline_operation_if_no_operation_name_is_provided():
     # type: () -> None
     doc = "{ a }"
 
-    class Data(object):
+    class Data:
         a = "b"
 
     ast = parse(doc)
@@ -298,7 +298,7 @@ def test_uses_the_only_operation_if_no_operation_name_is_provided():
     # type: () -> None
     doc = "query Example { a }"
 
-    class Data(object):
+    class Data:
         a = "b"
 
     ast = parse(doc)
@@ -312,7 +312,7 @@ def test_uses_the_named_operation_if_operation_name_is_provided():
     # type: () -> None
     doc = "query Example { first: a } query OtherExample { second: a }"
 
-    class Data(object):
+    class Data:
         a = "b"
 
     ast = parse(doc)
@@ -326,7 +326,7 @@ def test_raises_if_no_operation_is_provided():
     # type: () -> None
     doc = "fragment Example on Type { a }"
 
-    class Data(object):
+    class Data:
         a = "b"
 
     ast = parse(doc)
@@ -340,7 +340,7 @@ def test_raises_if_no_operation_name_is_provided_with_multiple_operations():
     # type: () -> None
     doc = "query Example { a } query OtherExample { a }"
 
-    class Data(object):
+    class Data:
         a = "b"
 
     ast = parse(doc)
@@ -354,7 +354,7 @@ def test_raises_if_unknown_operation_name_is_provided():
     # type: () -> None
     doc = "query Example { a } query OtherExample { a }"
 
-    class Data(object):
+    class Data:
         a = "b"
 
     ast = parse(doc)
@@ -370,7 +370,7 @@ def test_uses_the_query_schema_for_queries():
     # type: () -> None
     doc = "query Q { a } mutation M { c } subscription S { a }"
 
-    class Data(object):
+    class Data:
         a = "b"
         c = "d"
 
@@ -387,7 +387,7 @@ def test_uses_the_mutation_schema_for_queries():
     # type: () -> None
     doc = "query Q { a } mutation M { c }"
 
-    class Data(object):
+    class Data:
         a = "b"
         c = "d"
 
@@ -405,7 +405,7 @@ def test_uses_the_subscription_schema_for_subscriptions():
 
     doc = "query Q { a } subscription S { a }"
 
-    class Data(object):
+    class Data:
         a = "b"
         c = "d"
 
@@ -448,7 +448,7 @@ def test_avoids_recursion():
         }
     """
 
-    class Data(object):
+    class Data:
         a = "b"
 
     ast = parse(doc)
@@ -498,12 +498,12 @@ def test_does_not_include_arguments_that_were_not_set():
 
 def test_fails_when_an_is_type_of_check_is_not_met():
     # type: () -> None
-    class Special(object):
+    class Special:
         def __init__(self, value):
             # type: (str) -> None
             self.value = value
 
-    class NotSpecial(object):
+    class NotSpecial:
         def __init__(self, value):
             # type: (str) -> None
             self.value = value
@@ -656,7 +656,7 @@ def test_executor_properly_propogates_path_data(mocker):
 
     BlogSchema = GraphQLSchema(BlogQuery)
 
-    class Article(object):
+    class Article:
         def __init__(self, id):
             # type: (int) -> None
             self.id = id
@@ -667,7 +667,7 @@ def test_executor_properly_propogates_path_data(mocker):
             self.hidden = "This data is not exposed in the schema"
             self.keywords = ["foo", "bar", 1, True, None]
 
-    class Author(object):
+    class Author:
         id = 123
         name = "John Smith"
 
@@ -678,13 +678,13 @@ def test_executor_properly_propogates_path_data(mocker):
         def recentArticle(self):
             return Article(1)
 
-    class Pic(object):
+    class Pic:
         def __init__(self, uid, width, height):
             self.url = "cdn://{}".format(uid)
             self.width = str(width)
             self.height = str(height)
 
-    class PathCollectorMiddleware(object):
+    class PathCollectorMiddleware:
         def __init__(self):
             # type: () -> None
             self.paths = []

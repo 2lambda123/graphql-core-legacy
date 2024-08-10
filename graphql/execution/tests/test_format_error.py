@@ -1,4 +1,3 @@
-# coding: utf-8
 import pytest
 
 from graphql.error import GraphQLError, format_error

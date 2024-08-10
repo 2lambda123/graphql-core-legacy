@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # graphqllib documentation build configuration file, created by
 # sphinx-quickstart on Wed Sep 16 20:08:39 2015.
@@ -51,9 +50,9 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = u"graphqllib"
-copyright = u"2015, Taeho Kim"
-author = u"Taeho Kim"
+project = "graphqllib"
+copyright = "2015, Taeho Kim"
+author = "Taeho Kim"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -224,7 +223,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "graphqllib.tex", u"graphqllib Documentation", u"Taeho Kim", "manual")
+    (master_doc, "graphqllib.tex", "graphqllib Documentation", "Taeho Kim", "manual")
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -252,7 +251,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, "graphqllib", u"graphqllib Documentation", [author], 1)]
+man_pages = [(master_doc, "graphqllib", "graphqllib Documentation", [author], 1)]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -267,7 +266,7 @@ texinfo_documents = [
     (
         master_doc,
         "graphqllib",
-        u"graphqllib Documentation",
+        "graphqllib Documentation",
         author,
         "graphqllib",
         "One line description of project.",

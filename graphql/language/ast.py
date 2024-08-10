@@ -7,7 +7,7 @@ if False:  # flake8: noqa
 # Run scripts/generate_ast.py to generate this file.
 
 
-class Node(object):
+class Node:
     __slots__ = ()
     _fields = ()  # type: Iterable[str]
     loc = None  # type: Optional[Loc]

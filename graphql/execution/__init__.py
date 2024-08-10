@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Terminology
 
@@ -18,6 +17,7 @@ single level of the query. These include:
 2) fragment "spreads" e.g. "...c"
 3) inline fragment "spreads" e.g. "...on Type { a }"
 """
+
 from .executor import execute, subscribe
 from .base import ExecutionResult, ResolveInfo
 from .middleware import middlewares, MiddlewareManager

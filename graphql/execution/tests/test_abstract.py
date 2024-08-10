@@ -10,21 +10,21 @@ from graphql.type.definition import (
 )
 
 
-class Dog(object):
+class Dog:
     def __init__(self, name, woofs):
         # type: (str, bool) -> None
         self.name = name
         self.woofs = woofs
 
 
-class Cat(object):
+class Cat:
     def __init__(self, name, meows):
         # type: (str, bool) -> None
         self.name = name
         self.meows = meows
 
 
-class Human(object):
+class Human:
     def __init__(self, name):
         # type: (str) -> None
         self.name = name

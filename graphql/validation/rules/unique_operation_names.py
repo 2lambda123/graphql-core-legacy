@@ -13,7 +13,7 @@ class UniqueOperationNames(ValidationRule):
 
     def __init__(self, context):
         # type: (ValidationContext) -> None
-        super(UniqueOperationNames, self).__init__(context)
+        super().__init__(context)
         self.known_operation_names = {}  # type: Dict[str, Name]
 
     def enter_OperationDefinition(

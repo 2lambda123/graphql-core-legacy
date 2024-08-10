@@ -1,7 +1,7 @@
 try:
     from collections.abc import Iterable, Mapping
 except ImportError:  # Python < 3.3
-    from collections import Iterable, Mapping
+    from collections.abc import Iterable, Mapping
 
 from ..pyutils.ordereddict import OrderedDict
 from ..utils.assert_valid_name import assert_valid_name
@@ -9,7 +9,7 @@ from .definition import GraphQLArgument, GraphQLNonNull, is_input_type
 from .scalars import GraphQLBoolean, GraphQLString
 
 
-class DirectiveLocation(object):
+class DirectiveLocation:
     # Operations
     QUERY = "QUERY"
     MUTATION = "MUTATION"
@@ -39,7 +39,7 @@ class DirectiveLocation(object):
     FIELD_LOCATIONS = [FIELD]
 
 
-class GraphQLDirective(object):
+class GraphQLDirective:
     __slots__ = "name", "args", "description", "locations"
 
     def __init__(self, name, description=None, args=None, locations=None):

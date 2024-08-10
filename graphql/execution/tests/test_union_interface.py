@@ -18,19 +18,19 @@ from graphql.type import (
 # from typing import Union
 
 
-class Dog(object):
+class Dog:
     def __init__(self, name, barks):
         self.name = name
         self.barks = barks
 
 
-class Cat(object):
+class Cat:
     def __init__(self, name, meows):
         self.name = name
         self.meows = meows
 
 
-class Person(object):
+class Person:
     def __init__(self, name, pets, friends):
         # type: (str, List, List[Person]) -> None
         self.name = name

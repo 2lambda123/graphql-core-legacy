@@ -1,7 +1,7 @@
 try:
     from collections.abc import Iterable
 except ImportError:  # Python <3.3
-    from collections import Iterable
+    from collections.abc import Iterable
 import json
 
 from six import string_types
@@ -38,7 +38,8 @@ def get_variable_values(
 ):
     # type: (...) -> Dict[str, Any]
     """Prepares an object map of variables of the correct type based on the provided variable definitions and arbitrary input.
-    If the input cannot be parsed to match the variable definitions, a GraphQLError will be thrown."""
+    If the input cannot be parsed to match the variable definitions, a GraphQLError will be thrown.
+    """
     if inputs is None:
         inputs = {}
 
@@ -70,7 +71,7 @@ def get_variable_values(
         else:
             errors = is_valid_value(value, var_type)
             if errors:
-                message = u"\n" + u"\n".join(errors)
+                message = "\n" + "\n".join(errors)
                 raise GraphQLError(
                     'Variable "${}" got invalid value {}.{}'.format(
                         var_name, json.dumps(value, sort_keys=True), message
@@ -162,7 +163,7 @@ def coerce_value(type, value):
 
     if isinstance(type, GraphQLList):
         item_type = type.of_type
-        if not isinstance(value, string_types) and isinstance(value, Iterable):
+        if not isinstance(value, str) and isinstance(value, Iterable):
             return [coerce_value(item_type, item) for item in value]
         else:
             return [coerce_value(item_type, value)]

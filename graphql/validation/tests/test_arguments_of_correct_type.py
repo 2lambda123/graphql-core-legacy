@@ -6,7 +6,7 @@ from .utils import expect_fails_rule, expect_passes_rule
 
 def bad_value(arg_name, type_name, value, line, column, errors=None):
     if not errors:
-        errors = [u'Expected type "{}", found {}.'.format(type_name, value)]
+        errors = ['Expected type "{}", found {}.'.format(type_name, value)]
 
     return {
         "message": ArgumentsOfCorrectType.bad_value_message(
@@ -17,7 +17,7 @@ def bad_value(arg_name, type_name, value, line, column, errors=None):
 
 
 # noinspection PyMethodMayBeStatic
-class TestValidValues(object):
+class TestValidValues:
     def test_good_int_value(self):
         expect_passes_rule(
             ArgumentsOfCorrectType,
@@ -116,7 +116,7 @@ class TestValidValues(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestInvalidStringValues(object):
+class TestInvalidStringValues:
     def test_int_into_string(self):
         expect_fails_rule(
             ArgumentsOfCorrectType,
@@ -171,7 +171,7 @@ class TestInvalidStringValues(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestInvalidIntValues(object):
+class TestInvalidIntValues:
     def test_string_into_int(self):
         expect_fails_rule(
             ArgumentsOfCorrectType,
@@ -239,7 +239,7 @@ class TestInvalidIntValues(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestInvalidFloatValues(object):
+class TestInvalidFloatValues:
     def test_string_into_float(self):
         expect_fails_rule(
             ArgumentsOfCorrectType,
@@ -281,7 +281,7 @@ class TestInvalidFloatValues(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestInvalidBooleanValues(object):
+class TestInvalidBooleanValues:
     def test_int_into_boolean(self):
         expect_fails_rule(
             ArgumentsOfCorrectType,
@@ -336,7 +336,7 @@ class TestInvalidBooleanValues(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestInvalidIDValues(object):
+class TestInvalidIDValues:
     def test_float_into_id(self):
         expect_fails_rule(
             ArgumentsOfCorrectType,
@@ -378,7 +378,7 @@ class TestInvalidIDValues(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestInvalidEnumValues(object):
+class TestInvalidEnumValues:
     def test_int_into_enum(self):
         expect_fails_rule(
             ArgumentsOfCorrectType,
@@ -459,7 +459,7 @@ class TestInvalidEnumValues(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestValidListValues(object):
+class TestValidListValues:
     def test_good_list_value(self):
         expect_passes_rule(
             ArgumentsOfCorrectType,
@@ -498,7 +498,7 @@ class TestValidListValues(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestInvalidListValues(object):
+class TestInvalidListValues:
     def test_incorrect_item_type(self):
         expect_fails_rule(
             ArgumentsOfCorrectType,
@@ -536,7 +536,7 @@ class TestInvalidListValues(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestValidNonNullableValues(object):
+class TestValidNonNullableValues:
     def test_arg_on_optional_arg(self):
         expect_passes_rule(
             ArgumentsOfCorrectType,
@@ -647,7 +647,7 @@ class TestValidNonNullableValues(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestInvalidNonNullableValues(object):
+class TestInvalidNonNullableValues:
     def test_incorrect_value_type(self):
         expect_fails_rule(
             ArgumentsOfCorrectType,
@@ -679,7 +679,7 @@ class TestInvalidNonNullableValues(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestValidInputObjectValue(object):
+class TestValidInputObjectValue:
     def test_optional_arg_despite_required_field_in_type(self):
         expect_passes_rule(
             ArgumentsOfCorrectType,
@@ -766,7 +766,7 @@ class TestValidInputObjectValue(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestInvalidInputObjectValue(object):
+class TestInvalidInputObjectValue:
     def test_partial_object_missing_required(self):
         expect_fails_rule(
             ArgumentsOfCorrectType,
@@ -843,7 +843,7 @@ class TestInvalidInputObjectValue(object):
 
 
 # noinspection PyMethodMayBeStatic
-class TestDirectiveArguments(object):
+class TestDirectiveArguments:
     def test_with_directives_of_valid_types(self):
         expect_passes_rule(
             ArgumentsOfCorrectType,

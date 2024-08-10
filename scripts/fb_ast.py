@@ -76,4 +76,4 @@ if __name__ == "__main__":
 
     lang_module = load_lang(lang)
 
-    print_ast(lang_module, open(filename, "r"))
+    print_ast(lang_module, open(filename))

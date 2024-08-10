@@ -18,7 +18,7 @@ class NoUnusedFragments(ValidationRule):
 
     def __init__(self, context):
         # type: (ValidationContext) -> None
-        super(NoUnusedFragments, self).__init__(context)
+        super().__init__(context)
         self.operation_definitions = []  # type: List[OperationDefinition]
         self.fragment_definitions = []  # type: List[FragmentDefinition]
 

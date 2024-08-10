@@ -1,6 +1,6 @@
 repos:
--   repo: git://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
     hooks:
     -   id: check-merge-conflict
     -   id: check-json
@@ -14,15 +14,15 @@ repos:
     -   id: trailing-whitespace
         exclude: README.md
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v1.26.2
+    rev: v3.17.0
     hooks:
     -   id: pyupgrade
--   repo: https://github.com/ambv/black
-    rev: 19.10b0
+-   repo: https://github.com/psf/black
+    rev: 24.8.0
     hooks:
     - id: black
 -   repo: https://github.com/pycqa/flake8
-    rev: 3.7.9
+    rev: 7.1.1
     hooks:
     -   id: flake8
         exclude: test_.*$

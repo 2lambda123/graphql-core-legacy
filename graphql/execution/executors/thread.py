@@ -9,7 +9,7 @@ if False:  # flake8: noqa
     from typing import Any, Callable, List
 
 
-class ThreadExecutor(object):
+class ThreadExecutor:
 
     pool = None
 

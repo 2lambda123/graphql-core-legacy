@@ -13,7 +13,7 @@ class UniqueInputFieldNames(ValidationRule):
 
     def __init__(self, context):
         # type: (ValidationContext) -> None
-        super(UniqueInputFieldNames, self).__init__(context)
+        super().__init__(context)
         self.known_names = {}  # type: Dict[str, Name]
         self.known_names_stack = []  # type: List[Dict[str, Name]]
 
